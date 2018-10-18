@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+			<form th:action="@{/formulario}" th:object="${ordentrabajo}" method="post" enctype="multipart/form-data">
+					<div class="form-group row" >
+							<label class="col-sm-2 col-form-label">Módulo</label>
+							<div class="col-sm-6" >
+							<select th:field="*{modulo}" class="form-control">
+                         		<option value=""> Seleccionar </option>
+                         		<option th:each="modulo : ${modulos}"
+                            		th:value="${modulo.nombre}"
+                            		th:utext="${modulo.nombre}"/>
+                  				</select>
+							
+							</div>
+					</div>	
+					<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Fecha</label>
+							<div class="col-sm-6" >
+							<input type="text" class="form-control" th:value="${#dates.format(new java.util.Date(), 'dd/MM/yyyy')}"/>
+							</div>
+					</div>	
+					<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Solicitado Por:</label>
+							<div class="col-sm-6" >
+							<input type="text" th:field="*{solicitado}" class="form-control"/>
+							</div>
+					</div>	
+					<div class="form-group row">
+							<label for="file" class="col-sm-2 col-form-label">Cargo</label>
+							<div class="col-sm-6" >
+							<input type="text" th:field="*{cargo}" class="form-control"/>
+							</div>
+					</div>
+					<div class="form-group row" >
+							<label class="col-sm-2 col-form-label">Tipo Desarrollo</label>
+							<div class="col-sm-6" >
+							<select th:field="*{tipoDesarrollo}" class="form-control">
+                         		<option value=""> Seleccionar </option>
+                         		<option th:each="tipo : ${tipoDesarrollos}"
+                            		th:value="${tipo.descripcion}"
+                            		th:utext="${tipo.descripcion}"/>
+                  				</select>
+							
+							</div>
+					</div>		
+					<div class="form-group row" >
+							<label for="file" class="col-sm-2 col-form-label">Referencia</label>
+							<div class="col-sm-6" >
+							<input type="text" th:field="*{referencia}" class="form-control"/>
+							</div>
+					</div>	
+					<div class="form-group row">
+							<label for="file" class="col-sm-2 col-form-label">Funcionalidad Actual</label>
+							<div class="col-sm-6" >
+							<textarea th:field="*{funcionalidadActual}" class="form-control"></textarea>
+							</div>
+					</div>
+					<div class="form-group row">
+							<label for="file" class="col-sm-2 col-form-label">Descripción Cambio</label>
+							<div class="col-sm-6" >
+							<textarea th:field="*{descripcionCambio}" class="form-control"></textarea>
+							</div>
+					</div>
+					<div class="form-group row">
+							<label for="file" class="col-sm-2 col-form-label">Responsable(s)</label>
+							<div class="col-sm-6" >
+							<textarea th:field="*{responsable}" class="form-control"></textarea>
+							</div>
+					</div>
+					<div class="form-group row">
+							<label for="file" class="col-sm-2 col-form-label">Aprobado</label>
+							<div class="col-sm-6" >
+							<input type="text" th:field="*{aprobado}" class="form-control"/>
+							</div>
+					</div>
+					<div class="form-group row">
+							<label for="file" class="col-sm-2 col-form-label">Observación</label>
+							<div class="col-sm-6" >
+							<textarea th:field="*{observacion}" class="form-control"></textarea>
+							</div>
+					</div>
+					<div class="form-group row">		
+							<div class="col-sm-6" >
+							<input type="submit" value="Crear Orden Desarrollo" class="btn btn-primary"/>
+							</div>
+					</div>
+					<p>  
+					<input type="hidden" th:field="*{id}"/>
+				</form>
+	</div>		
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
